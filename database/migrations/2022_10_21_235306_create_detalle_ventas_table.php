@@ -15,10 +15,11 @@ class CreateDetalleVentasTable extends Migration
     {
         Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->id();
-            $table->string("id_producto");
             $table->string("cant_producto");
             $table->string("precios");
             $table->string("id_venta");
+            $table->foreignId('venta_id')->constrained('ventas');
+            $table->foreignId('productos_id')->constrained('productos');
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ class CreateVentasTable extends Migration
             $table->string("numero venta");
             $table->string("total");
             $table->string("usuario");
+            $table->foreignId('venta_id')->constrained('clientes');
             $table->string("fecha");
             
             $table->timestamps();

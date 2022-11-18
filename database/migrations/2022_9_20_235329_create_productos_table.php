@@ -20,7 +20,8 @@ class CreateProductosTable extends Migration
             $table->string("cant_pro");
             $table->string("precio");
             $table->string("fecha");
-            $table->string("id_referecia");
+            $table->foreignId('id_referencia')->constrained('referencias');
+           
             
             $table->timestamps();
         });
