@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Almacenes;
+use App\Users;
 
-class AlmacenesController extends Controller
+class UsersController extends Controller
 
 // controlador consultar datos
 {
     public function index()
     {                      
-       $almacenes = Almacenes::all();
+       $users = Users::all();
        $array=array(
         'status'=>200,
         'msj'=>'consulta exitosa'
        );
        return [
-        'data'=>$almacenes,
+        'data'=>$users,
         'response'=>$array
        ];
        // controlador seleccionar datos
@@ -25,8 +25,8 @@ class AlmacenesController extends Controller
 
     public function getSelect()
     {                      
-        $almacenes = Almacenes::select('id','nombre')->get();   
-        return ['data'=>$almacenes];
+        $users = Users::select('id','nombre')->get();   
+        return ['data'=>$users];
 
 
          // controlador Guardar datos
@@ -34,14 +34,15 @@ class AlmacenesController extends Controller
     }
     public function store(Request $request)
     {
-        $almacenes = new Almacenes;
+        $users = new Users;
  
         //nombre campo en la BD             nombre del campo en POSTMAN
-        $almacenes->nombre = $request->nombre;
-        $almacenes->direccion = $request->direccion;
-        $almacenes->telefono = $request->telefono;
+        $users->name = $request->nombre;
+        $users->email = $request->email;
+        $users->password = $request->contraseña;
+        $users->remember_token = $request->token;
 
-        $almacenes->save();
+        $users->save();
 
 
         // controlador actualizar datos
@@ -51,19 +52,20 @@ class AlmacenesController extends Controller
     {
        
                         
-        $almacenes = Almacenes::find($request->id);
+        $users = Users::find($request->id);
         //nombre campo en la BD             nombre del campo en POSTMAN
-        $almacenes->nombre = $request->nombre;
-        $almacenes->direccion = $request->direccion;
-        $almacenes->telefono = $request->telefono;
+        $users->name = $request->nombre;
+        $users->email = $request->email;
+        $users->password = $request->contraseña;
+        $users->remember_token = $request->token;
     
-        $almacenes->save();
+        $users->save();
 
         //Controlador Eliminar Datos
     }
     public function destroy(Request $request)
     {                      
-        $almacenes = Almacenes::find($request->id);
-        $almacenes->delete();
+        $users = Users::find($request->id);
+        $users->delete();
     }
 }
